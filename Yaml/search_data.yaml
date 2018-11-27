@@ -7,6 +7,8 @@ test_001:
 test_002:
  user : '16601035179'
  password : 'Acheng123456'
+ assert_title : '将发送验证码短信到这个手机号'
 test_003:
  user : '16601035178'
  password : 'Acheng1234567'
+ assert_password : 1

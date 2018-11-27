@@ -8,7 +8,7 @@ def yaml():
     yaml_data = Read_Data('search_data.yaml').return_data()
     for i in yaml_data.keys():
         list.append((i,yaml_data.get(i).get('user'),yaml_data.get(i).get('password'),yaml_data.get(i).get('tag'),
-                     yaml_data.get(i).get('assert_user')))
+                     yaml_data.get(i).get('assert_user'),yaml_data.get(i).get('assert_title'),yaml_data.get(i).get('assert_password')))
     return list
 
 
@@ -31,49 +31,58 @@ class Test_Login:
     def teardown_class(self):
         self.Dv.driver.quit()
     @pytest.mark.run(order=1)
-    @pytest.mark.parametrize('test_id,user,password,tag,assert_user',yaml())
-    def test_setting(self,test_id,user,password,tag,assert_user):
+    @pytest.mark.parametrize('test_id,user,password,tag,assert_user,assert_title,assert_password',yaml())
+    def test_setting(self,test_id,user,password,tag,assert_user,assert_title,assert_password):
         time.sleep(1)
         # 输入手机
         self.Dv.return_page().send_keys_account(Page.phone,user)
         # 点击下一步按钮
         self.Dv.return_page().click_nextstep_button()
-        try:
-            assert not self.Dv.return_page().find_element(Page.password)
-        except Exception as E:
-            allure.attach('获取密码输入框结果','{0}'.format('获取失败，账号格式不通过'))
-        # 输入密码
-        self.Dv.return_page().send_keys_password(Page.password,password)
-        time.sleep(1)
-        # 上滑屏幕
-        self.Dv.return_page().slide_up_001()
-        # 点击登录按钮
-        self.Dv.return_page().click_register_button()
-        if tag:
-            time.sleep(1)
-            # 上滑屏幕
-            self.Dv.return_page().slide_up()
-            # 点击设置按钮
-            self.Dv.return_page().click_setting_button()
-            time.sleep(1)
-            # 上滑屏幕
-            self.Dv.return_page().slide_up()
-            # 点击退出按钮
-            self.Dv.return_page().click_quitregister_button()
-            # 点击回退按钮
-            self.Dv.return_page().click_back_button()
-            # 下滑屏幕
-            self.Dv.return_page().slide_below()
+        if assert_title:
             try:
-                assert not self.Dv.return_page().find_element(Page.login_register_button)
+                assert assert_user == self.Dv.return_page().gain_text(Page.verification_code)
             except Exception as E:
-                allure.attach('退出登录后的页面', '{0}'.format('未在登录\注册页面'))
-            finally:
-                time.sleep(1)
-                # 点击登录或注册按钮
-                self.Dv.return_page().click_loginregister_button()
+                # 点击取消按钮
+                self.Dv.return_page().click_cancel_verification_button()
+                allure.attach('获取密码输入框结果','{0}'.format('获取失败，未注册手机,需要注册'))
+        if assert_password:
+            try:
+                assert not self.Dv.return_page().find_element(Page.password)
+            except Exception as E:
+                allure.attach('获取密码输入框结果', '{0}'.format('获取失败，手机格式不正确'))
         else:
-            try:
-                assert not self.Dv.return_page().find_element(Page.login_register_button)
-            except Exception as E:
-                allure.attach('登录结果', '{0}'.format('登录失败'))
+            # 输入密码
+            self.Dv.return_page().send_keys_password(Page.password,password)
+            time.sleep(1)
+            # 上滑屏幕
+            self.Dv.return_page().slide_up_001()
+            # 点击登录按钮
+            self.Dv.return_page().click_register_button()
+            if tag:
+                time.sleep(1)
+                # 上滑屏幕
+                self.Dv.return_page().slide_up()
+                # 点击设置按钮
+                self.Dv.return_page().click_setting_button()
+                time.sleep(1)
+                # 上滑屏幕
+                self.Dv.return_page().slide_up()
+                # 点击退出按钮
+                self.Dv.return_page().click_quitregister_button()
+                # 点击回退按钮
+                self.Dv.return_page().click_back_button()
+                # 下滑屏幕
+                self.Dv.return_page().slide_below()
+                try:
+                    assert not self.Dv.return_page().find_element(Page.login_register_button)
+                except Exception as E:
+                    allure.attach('退出登录后的页面', '{0}'.format('未在登录\注册页面'))
+                finally:
+                    time.sleep(1)
+                    # 点击登录或注册按钮
+                    self.Dv.return_page().click_loginregister_button()
+            else:
+                try:
+                    assert not self.Dv.return_page().find_element(Page.login_register_button)
+                except Exception as E:
+                    allure.attach('登录结果', '{0}'.format('登录失败'))

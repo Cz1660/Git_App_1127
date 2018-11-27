@@ -28,8 +28,8 @@ class Operating_Method(Base_Method):
     def click_register_button(self):
         self.click_element(Page.register_button)
     @allure.step('获取text值')
-    def gain_text(self):
-        element = self.find_element(Page.user_name)
+    def gain_text(self,element):
+        element = self.find_element(element)
         return element.text
     @allure.step('点击设置按钮')
     def click_setting_button(self):
@@ -40,7 +40,9 @@ class Operating_Method(Base_Method):
     @allure.step('点击回退按钮')
     def click_back_button(self):
         self.click_element(Page.back_button)
-
+    @allure.step('点击取消按钮')
+    def click_cancel_verification_button(self):
+        self.click_element(Page.cancel_verification)
 
     @allure.step('页面向右滑动')
     def slide_right(self):
