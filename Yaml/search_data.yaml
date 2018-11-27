@@ -5,7 +5,7 @@ test_001:
  tag : 1
  assert_user : '16601035178'
 test_002:
- user : '16601035178'
+ user : '16601035179'
  password : 'Acheng123456'
 test_003:
  user : '16601035178'
