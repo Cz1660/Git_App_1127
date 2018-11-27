@@ -1,0 +1,71 @@
+from Base.Get_Driver import Get_Driver
+from Page.Return_Page import Return_Page
+import Page,time,pytest,allure
+from Yaml.read_yaml import Read_Data
+
+def yaml():
+    list = []
+    yaml_data = Read_Data('search_data.yaml').return_data()
+    for i in yaml_data.keys():
+        list.append((i,yaml_data.get(i).get('user'),yaml_data.get(i).get('password'),yaml_data.get(i).get('tag'),
+                     yaml_data.get(i).get('assert_user')))
+    return list
+
+
+class Test_Login:
+    def setup_class(self):
+        self.Dv = Return_Page(Get_Driver().get_driver('com.kuaiduizuoye.scan','.activity.init.InitActivity'))
+        # 滑动屏幕
+        for i in range(2):
+            self.Dv.return_page().slide_right()
+        # 点击立即体验按钮
+        self.Dv.return_page().click_experience_button()
+        # 点击跳过按钮
+        self.Dv.return_page().click_skip_button()
+        # 点击关闭活动按钮
+        self.Dv.return_page().click_oneyear_button()
+        # 点击我的按钮
+        self.Dv.return_page().click_my_button()
+        # 点击登录或注册按钮
+        self.Dv.return_page().click_loginregister_button()
+    def teardown_class(self):
+        self.Dv.driver.quit()
+    @pytest.mark.run(order=1)
+    @pytest.mark.parametrize('test_id,user,password,tag,assert_user',yaml())
+    def test_setting(self,test_id,user,password,tag,assert_user):
+        time.sleep(2)
+        # 输入手机
+        self.Dv.return_page().send_keys_text(Page.phone,user)
+        # 点击下一步按钮
+        self.Dv.return_page().click_nextstep_button()
+        # 输入密码
+        self.Dv.return_page().send_keys_text(Page.password,password)
+        # 上滑屏幕
+        self.Dv.return_page().slide_up_001()
+        # 点击登录按钮
+        self.Dv.return_page().click_register_button()
+        if tag:
+            # 上滑屏幕
+            self.Dv.return_page().slide_up()
+            # 点击设置按钮
+            self.Dv.return_page().click_setting_button()
+            # 上滑屏幕
+            self.Dv.return_page().slide_up()
+            # 点击退出登录按钮
+            self.Dv.return_page().click_quitregister_button()
+            # 点击回退按钮
+            self.Dv.return_page().click_back_button()
+            # 下滑屏幕
+            self.Dv.return_page().slide_below()
+            try:
+                assert not self.Dv.return_page().find_element(Page.login_register_button)
+            except Exception as E:
+                allure.attach('登录失败', '{0}'.format('error: %s')% E)
+            finally:
+                # 点击登录或注册按钮
+                self.Dv.return_page().click_loginregister_button()
+        else:
+            try:
+                assert assert_user != self.Dv.return_page().gain_text()
+            except Exception as E:
+                allure.attach('登录失败', '{0}'.format('error：%s')% E)

@@ -1,0 +1,232 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1543307811381" stop="1543307943406">
+  <name>Test_Use_Case_Register</name>
+  <labels/>
+  <test-cases>
+    <test-case start="1543307811381" status="passed" stop="1543307872109">
+      <name>Test_Use_Case_Register.Test_Login.test_setting[test_001-16601035178-Acheng123456-1-16601035178]</name>
+      <attachments>
+        <attachment source="2df7261a-6558-4819-8438-88e05b2cdd37-attachment.txt" title="error" type="text/plain"/>
+      </attachments>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="9684-MainThread"/>
+        <label name="host" value="EDIANZU-9E3HI0F"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1543307838503" status="passed" stop="1543307838603">
+          <name>页面向右滑动</name>
+          <title>页面向右滑动</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307838603" status="passed" stop="1543307838666">
+          <name>页面向右滑动</name>
+          <title>页面向右滑动</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307838666" status="passed" stop="1543307839787">
+          <name>点击立即体验按钮</name>
+          <title>点击立即体验按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307839787" status="passed" stop="1543307841480">
+          <name>点击跳过按钮</name>
+          <title>点击跳过按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307841480" status="passed" stop="1543307842497">
+          <name>点击活动关闭按钮</name>
+          <title>点击活动关闭按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307842497" status="passed" stop="1543307843169">
+          <name>点击我的按钮</name>
+          <title>点击我的按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307843169" status="passed" stop="1543307844549">
+          <name>点击登录或注册按钮</name>
+          <title>点击登录或注册按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307855727" status="passed" stop="1543307856862">
+          <name>点击下一步按钮</name>
+          <title>点击下一步按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307866980" status="passed" stop="1543307867029">
+          <name>页面向上滑动</name>
+          <title>页面向上滑动</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307867029" status="passed" stop="1543307868217">
+          <name>点击登录按钮</name>
+          <title>点击登录按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307868217" status="passed" stop="1543307868266">
+          <name>页面向上滑动</name>
+          <title>页面向上滑动</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307868266" status="passed" stop="1543307869344">
+          <name>点击设置按钮</name>
+          <title>点击设置按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307869344" status="passed" stop="1543307869388">
+          <name>页面向上滑动</name>
+          <title>页面向上滑动</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307869388" status="passed" stop="1543307870101">
+          <name>点击退出登录按钮</name>
+          <title>点击退出登录按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307870101" status="passed" stop="1543307870915">
+          <name>点击回退按钮</name>
+          <title>点击回退按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307870915" status="passed" stop="1543307870951">
+          <name>页面向下滑动</name>
+          <title>页面向下滑动</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307871596" status="passed" stop="1543307872108">
+          <name>点击登录或注册按钮</name>
+          <title>点击登录或注册按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+    <test-case start="1543307872115" status="failed" stop="1543307903824">
+      <name>Test_Use_Case_Register.Test_Login.test_setting[test_002-ifuu4617570-Acheng123456-None-None]</name>
+      <failure>
+        <message>TimeoutException: Message: 
+</message>
+        <stack-trace>self = &lt;Test_Use_Case_Register.Test_Use_Case_Register.Test_Login object at 0x03225250&gt;, test_id = 'test_002', user = 'ifuu4617570', password = 'Acheng123456'
+tag = None, assert_user = None
+
+    @pytest.mark.run(order=1)
+    @pytest.mark.parametrize('test_id,user,password,tag,assert_user',yaml())
+    def test_setting(self,test_id,user,password,tag,assert_user):
+        time.sleep(2)
+        # 输入手机
+        self.Dv.return_page().send_keys_text(Page.phone,user)
+        # 点击下一步按钮
+        self.Dv.return_page().click_nextstep_button()
+        # 输入密码
+&gt;       self.Dv.return_page().send_keys_text(Page.password,password)
+
+Test_Use_Case_Register\Test_Use_Case_Register.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+Base\Base_Method.py:19: in send_keys_text
+    element = self.find_element(loc)
+Base\Base_Method.py:10: in find_element
+    return WebDriverWait(self.driver,timeout,poll).until(lambda x:x.find_element(*loc))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.support.wait.WebDriverWait (session="a5165377-84f8-46a0-aa06-34054f600d91")&gt;
+method = &lt;function Base_Method.find_element.&lt;locals&gt;.&lt;lambda&gt; at 0x039F37C8&gt;, message = ''
+
+    def until(self, method, message=''):
+        """Calls the method provided with the driver as an argument until the \
+        return value is not False."""
+        screen = None
+        stacktrace = None
+    
+        end_time = time.time() + self._timeout
+        while True:
+            try:
+                value = method(self._driver)
+                if value:
+                    return value
+            except self._ignored_exceptions as exc:
+                screen = getattr(exc, 'screen', None)
+                stacktrace = getattr(exc, 'stacktrace', None)
+            time.sleep(self._poll)
+            if time.time() &gt; end_time:
+                break
+&gt;       raise TimeoutException(message, screen, stacktrace)
+E       selenium.common.exceptions.TimeoutException: Message:
+
+..\..\appdata\local\programs\python\python36-32\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutException</stack-trace>
+      </failure>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="9684-MainThread"/>
+        <label name="host" value="EDIANZU-9E3HI0F"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1543307884044" status="passed" stop="1543307887700">
+          <name>点击下一步按钮</name>
+          <title>点击下一步按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+    <test-case start="1543307903826" status="passed" stop="1543307943406">
+      <name>Test_Use_Case_Register.Test_Login.test_setting[test_003-16601035178-Acheng1234567-None-None]</name>
+      <attachments>
+        <attachment source="46fc3447-1b9b-449f-8440-ce4d95df0090-attachment.txt" title="error" type="text/plain"/>
+      </attachments>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="9684-MainThread"/>
+        <label name="host" value="EDIANZU-9E3HI0F"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1543307915495" status="passed" stop="1543307916411">
+          <name>点击下一步按钮</name>
+          <title>点击下一步按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307926627" status="passed" stop="1543307926682">
+          <name>页面向上滑动</name>
+          <title>页面向上滑动</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307926682" status="passed" stop="1543307927681">
+          <name>点击登录按钮</name>
+          <title>点击登录按钮</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1543307927681" status="failed" stop="1543307943406">
+          <name>获取text值</name>
+          <title>获取text值</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>

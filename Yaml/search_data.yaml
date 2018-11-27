@@ -1,0 +1,12 @@
+
+test_001:
+ user : '16601035178'
+ password : 'Acheng123456'
+ tag : 1
+ assert_user : '16601035178'
+test_002:
+ user : '16601035178'
+ password : 'Acheng123456'
+test_003:
+ user : '16601035178'
+ password : 'Acheng1234567'
