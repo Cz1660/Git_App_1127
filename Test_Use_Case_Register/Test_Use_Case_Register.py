@@ -49,15 +49,13 @@ class Test_Login:
         # 点击登录按钮
         self.Dv.return_page().click_register_button()
         if tag:
-            allure.attach('登录结果','{0}'.format('登录成功'))
             # 上滑屏幕
             self.Dv.return_page().slide_up()
             # 点击设置按钮
             self.Dv.return_page().click_setting_button()
             # 上滑屏幕
             self.Dv.return_page().slide_up()
-            # 点击退出登录按钮
-            self.Dv.return_page().click_quitregister_button()
+            assert self.Dv.return_page().click_quitregister_button()
             # 点击回退按钮
             self.Dv.return_page().click_back_button()
             # 下滑屏幕
@@ -65,12 +63,12 @@ class Test_Login:
             try:
                 assert not self.Dv.return_page().find_element(Page.login_register_button)
             except Exception as E:
-                allure.attach('登录结果', '{0}'.format('登录失败'))
+                allure.attach('退出登录后的页面', '{0}'.format('未在登录\注册页面'))
             finally:
                 # 点击登录或注册按钮
                 self.Dv.return_page().click_loginregister_button()
         else:
             try:
-                assert assert_user != self.Dv.return_page().gain_text()
+                assert not self.Dv.return_page().find_element(Page.login_register_button)
             except Exception as E:
                 allure.attach('登录结果', '{0}'.format('登录失败'))
