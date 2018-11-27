@@ -33,7 +33,7 @@ class Test_Login:
     @pytest.mark.run(order=1)
     @pytest.mark.parametrize('test_id,user,password,tag,assert_user',yaml())
     def test_setting(self,test_id,user,password,tag,assert_user):
-        time.sleep(2)
+        time.sleep(1)
         # 输入手机
         self.Dv.return_page().send_keys_account(Page.phone,user)
         # 点击下一步按钮
@@ -44,15 +44,18 @@ class Test_Login:
             allure.attach('获取密码输入框结果','{0}'.format('获取失败，账号格式不通过'))
         # 输入密码
         self.Dv.return_page().send_keys_password(Page.password,password)
+        time.sleep(1)
         # 上滑屏幕
         self.Dv.return_page().slide_up_001()
         # 点击登录按钮
         self.Dv.return_page().click_register_button()
         if tag:
+            time.sleep(1)
             # 上滑屏幕
             self.Dv.return_page().slide_up()
             # 点击设置按钮
             self.Dv.return_page().click_setting_button()
+            time.sleep(1)
             # 上滑屏幕
             self.Dv.return_page().slide_up()
             # 点击退出按钮
@@ -66,6 +69,7 @@ class Test_Login:
             except Exception as E:
                 allure.attach('退出登录后的页面', '{0}'.format('未在登录\注册页面'))
             finally:
+                time.sleep(1)
                 # 点击登录或注册按钮
                 self.Dv.return_page().click_loginregister_button()
         else:
