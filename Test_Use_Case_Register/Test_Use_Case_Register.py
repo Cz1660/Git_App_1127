@@ -35,16 +35,21 @@ class Test_Login:
     def test_setting(self,test_id,user,password,tag,assert_user):
         time.sleep(2)
         # 输入手机
-        self.Dv.return_page().send_keys_text(Page.phone,user)
+        self.Dv.return_page().send_keys_account(Page.phone,user)
         # 点击下一步按钮
         self.Dv.return_page().click_nextstep_button()
+        try:
+            assert not self.Dv.return_page().find_element(Page.password)
+        except Exception as E:
+            allure.attach('获取密码输入框结果','{0}'.format('获取失败，账号格式不通过'))
         # 输入密码
-        self.Dv.return_page().send_keys_text(Page.password,password)
+        self.Dv.return_page().send_keys_password(Page.password,password)
         # 上滑屏幕
         self.Dv.return_page().slide_up_001()
         # 点击登录按钮
         self.Dv.return_page().click_register_button()
         if tag:
+            allure.attach('登录结果','{0}'.format('登录成功'))
             # 上滑屏幕
             self.Dv.return_page().slide_up()
             # 点击设置按钮
@@ -60,7 +65,7 @@ class Test_Login:
             try:
                 assert not self.Dv.return_page().find_element(Page.login_register_button)
             except Exception as E:
-                allure.attach('登录失败', '{0}'.format('error: %s')% E)
+                allure.attach('登录结果', '{0}'.format('登录失败'))
             finally:
                 # 点击登录或注册按钮
                 self.Dv.return_page().click_loginregister_button()
@@ -68,4 +73,4 @@ class Test_Login:
             try:
                 assert assert_user != self.Dv.return_page().gain_text()
             except Exception as E:
-                allure.attach('登录失败', '{0}'.format('error：%s')% E)
+                allure.attach('登录结果', '{0}'.format('登录失败'))
