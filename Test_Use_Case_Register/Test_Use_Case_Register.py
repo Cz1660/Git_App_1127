@@ -55,7 +55,8 @@ class Test_Login:
             self.Dv.return_page().click_setting_button()
             # 上滑屏幕
             self.Dv.return_page().slide_up()
-            assert self.Dv.return_page().click_quitregister_button()
+            # 点击退出按钮
+            self.Dv.return_page().click_quitregister_button()
             # 点击回退按钮
             self.Dv.return_page().click_back_button()
             # 下滑屏幕
