@@ -6,10 +6,10 @@ class Base_Method:
     def __init__(self,driver):
         self.driver = driver
     # 定位单个元素
-    def find_element(self,loc,timeout=18,poll=0.5):
+    def find_element(self,loc,timeout=18,poll=0.1):
         return WebDriverWait(self.driver,timeout,poll).until(lambda x:x.find_element(*loc))
     # 定位一组元素
-    def find_elements(self,loc,timeout=18,poll=0.5):
+    def find_elements(self,loc,timeout=18,poll=0.1):
         return WebDriverWait(self.driver,timeout,poll).until(lambda x:x.find_elements(*loc))
     # 点击
     def click_element(self,loc):
