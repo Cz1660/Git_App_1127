@@ -33,7 +33,7 @@ class Test_Login:
     @pytest.mark.run(order=1)
     @pytest.mark.parametrize('test_id,user,password,tag,assert_user,assert_title,assert_password',yaml())
     def test_setting(self,test_id,user,password,tag,assert_user,assert_title,assert_password):
-        time.sleep(1)
+        time.sleep(3)
         # 输入手机
         self.Dv.return_page().send_keys_account(Page.phone,user)
         # 点击下一步按钮
