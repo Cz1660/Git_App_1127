@@ -40,17 +40,17 @@ class Test_Login:
         self.Dv.return_page().click_nextstep_button()
         if assert_title:
             try:
-                assert assert_user == self.Dv.return_page().gain_text(Page.verification_code)
+                assert not assert_title == self.Dv.return_page().gain_text(Page.verification_code)
             except Exception as E:
+                allure.attach('获取验证码弹窗','{0}'.format('获取成功，未注册手机,需要注册！'))
                 # 点击取消按钮
                 self.Dv.return_page().click_cancel_verification_button()
-                allure.attach('获取密码输入框结果','{0}'.format('获取失败，未注册手机,需要注册'))
         if assert_password:
             try:
                 assert not self.Dv.return_page().find_element(Page.password)
             except Exception as E:
-                allure.attach('获取密码输入框结果', '{0}'.format('获取失败，手机格式不正确'))
-        else:
+                allure.attach('获取密码输入框结果', '{0}'.format('获取失败，手机格式不正确，点击下一步按钮失败！'))
+        if assert_user:
             # 输入密码
             self.Dv.return_page().send_keys_password(Page.password,password)
             time.sleep(1)
@@ -76,13 +76,12 @@ class Test_Login:
                 try:
                     assert not self.Dv.return_page().find_element(Page.login_register_button)
                 except Exception as E:
-                    allure.attach('退出登录后的页面', '{0}'.format('未在登录\注册页面'))
+                    allure.attach('退出登录结果','{0}'.format('成功！'))
                 finally:
                     time.sleep(1)
                     # 点击登录或注册按钮
                     self.Dv.return_page().click_loginregister_button()
-            else:
                 try:
-                    assert not self.Dv.return_page().find_element(Page.login_register_button)
+                    assert self.Dv.return_page().find_element(Page.login_register_button)
                 except Exception as E:
-                    allure.attach('登录结果', '{0}'.format('登录失败'))
+                    allure.attach('退出登录后的页面', '{0}'.format('未在登录\注册页面！'))
