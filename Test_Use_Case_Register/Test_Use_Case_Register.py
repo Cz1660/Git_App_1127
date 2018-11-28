@@ -40,7 +40,7 @@ class Test_Login:
         self.Dv.return_page().click_nextstep_button()
         if assert_title:
             try:
-                assert not assert_title == self.Dv.return_page().gain_text(Page.verification_code)
+                assert not self.Dv.return_page().gain_text(Page.verification_code)
             except Exception as E:
                 # 点击取消按钮
                 self.Dv.return_page().click_cancel_verification_button()
