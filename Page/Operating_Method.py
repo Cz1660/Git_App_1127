@@ -53,7 +53,7 @@ class Operating_Method(Base_Method):
     @allure.step('点击回退按钮')
     def click_back_button(self):
         self.click_element(Page.back_button)
-    @allure.step('点击取消按钮')
+    @allure.step('点击获取验证码弹窗的取消按钮')
     def click_cancel_verification_button(self):
         self.click_element(Page.cancel_verification)
 
