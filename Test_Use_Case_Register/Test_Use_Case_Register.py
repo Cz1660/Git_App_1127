@@ -84,6 +84,6 @@ class Test_Login:
                 except Exception as E:
                     allure.attach('获取密码输入框结果', '{0}'.format('获取成功，密码不正确，登录失败！'))
                 finally:
-                    time.sleep(8)
+                    time.sleep(12)
                     # 点击回退按钮
                     self.Dv.return_page().click_element(Page.back_password)
