@@ -42,9 +42,9 @@ class Test_Login:
             try:
                 assert not assert_title == self.Dv.return_page().gain_text(Page.verification_code)
             except Exception as E:
-                allure.attach('获取验证码弹窗','{0}'.format('获取成功，未注册手机,需要注册！'))
                 # 点击取消按钮
                 self.Dv.return_page().click_cancel_verification_button()
+                allure.attach('获取验证码弹窗','{0}'.format('获取成功，未注册手机,需要注册！'))
         if assert_user:
             # 输入密码
             self.Dv.return_page().send_keys_password(Page.password,password)
