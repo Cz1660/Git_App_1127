@@ -45,11 +45,6 @@ class Test_Login:
                 allure.attach('获取验证码弹窗','{0}'.format('获取成功，未注册手机,需要注册！'))
                 # 点击取消按钮
                 self.Dv.return_page().click_cancel_verification_button()
-        if assert_password:
-            try:
-                assert not self.Dv.return_page().find_element(Page.password)
-            except Exception as E:
-                allure.attach('获取密码输入框结果', '{0}'.format('获取失败，手机格式不正确，点击下一步按钮失败！'))
         if assert_user:
             # 输入密码
             self.Dv.return_page().send_keys_password(Page.password,password)
@@ -81,7 +76,8 @@ class Test_Login:
                     time.sleep(1)
                     # 点击登录或注册按钮
                     self.Dv.return_page().click_loginregister_button()
+            else:
                 try:
-                    assert self.Dv.return_page().find_element(Page.login_register_button)
+                    assert not self.Dv.return_page().find_element(Page.password)
                 except Exception as E:
-                    allure.attach('退出登录后的页面', '{0}'.format('未在登录\注册页面！'))
+                    allure.attach('获取密码输入框结果', '{0}'.format('获取成功，密码不正确，登录失败！'))

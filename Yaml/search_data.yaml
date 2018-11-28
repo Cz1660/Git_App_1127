@@ -11,4 +11,4 @@ test_002:
 test_003:
  user : '16601035178'
  password : 'Acheng1234567'
- assert_password : '1'
+ assert_user : '1'
