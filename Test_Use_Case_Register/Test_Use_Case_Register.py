@@ -42,9 +42,9 @@ class Test_Login:
         time.sleep(2)
         if assert_title:
             try:
-                assert not self.Dv.return_page().gain_text(Page.verification_code)
+                assert not self.Dv.return_page().find_element(Page.verification_code)
             except Exception as E:
-                allure.attach('获取验证码弹窗','{0}'.format('获取成功，未注册手机,需要注册！'))
+                allure.attach('点击下一步后获取验证码弹窗','{0}'.format('获取成功，未注册手机,需要注册！'))
                 # 点击取消按钮
                 self.Dv.return_page().click_cancel_verification_button()
         if assert_user:
@@ -73,7 +73,8 @@ class Test_Login:
                 try:
                     assert not self.Dv.return_page().find_element(Page.login_register_button)
                 except Exception as E:
-                    allure.attach('退出登录结果','{0}'.format('成功！'))
+                    text = self.Dv.return_page().gain_text(Page.login_register_button)
+                    allure.attach('下滑屏幕后页面获取"登录\注册"按钮','{0}'.format(text))
                 finally:
                     time.sleep(1)
                     # 点击登录或注册按钮

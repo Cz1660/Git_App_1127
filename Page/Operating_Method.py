@@ -21,10 +21,14 @@ class Operating_Method(Base_Method):
     @allure.step('点击登录或注册按钮')
     def click_loginregister_button(self):
         self.click_element(Page.login_register_button)
-    @allure.step('点击下一步按钮')
+    @allure.step('点击下一步按钮，断言是否跳转至密码输入页面')
     def click_nextstep_button(self):
         self.click_element(Page.nextstep_buton)
-    @allure.step('点击登录按钮,断言登录是否成功')
+        try:
+            assert self.find_element(Page.password)
+        except Exception as E:
+            allure.attach('是否跳转', '{0}'.format('未能跳转成功'))
+    @allure.step('点击登录按钮,断言登录是否成功，获取我的账号')
     def click_register_button(self):
         self.click_element(Page.register_button)
         try:
@@ -39,9 +43,13 @@ class Operating_Method(Base_Method):
     @allure.step('点击设置按钮')
     def click_setting_button(self):
         self.click_element(Page.setting_button)
-    @allure.step('点击退出登录按钮')
+    @allure.step('点击退出登录按钮，断言退出当前账号是否成功')
     def click_quitregister_button(self):
         self.click_element(Page.quit_register_button)
+        try:
+            assert self.find_element(Page.quit_register_button)
+        except:
+            allure.attach('是否退出成功', '{0}'.format('成功！'))
     @allure.step('点击回退按钮')
     def click_back_button(self):
         self.click_element(Page.back_button)
@@ -61,6 +69,6 @@ class Operating_Method(Base_Method):
     def slide_below(self):
         TouchAction(self.driver).press(x=489, y=118).move_to(x=466, y=1698).release().perform()
 
-    @allure.step('页面向上滑动')
+    @allure.step('输入密码页面，向上滑动')
     def slide_up_001(self):
         TouchAction(self.driver).press(x=466, y=961).move_to(x=489, y=118).release().perform()
