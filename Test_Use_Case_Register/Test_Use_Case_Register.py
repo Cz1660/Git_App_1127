@@ -56,7 +56,7 @@ class Test_Login:
             # 点击登录按钮
             self.Dv.return_page().click_register_button()
             if tag:
-                time.sleep(1)
+                time.sleep(2)
                 # 上滑屏幕
                 self.Dv.return_page().slide_up()
                 # 点击设置按钮
