@@ -20,3 +20,6 @@ back_button = (By.ID,'com.kuaiduizuoye.scan:id/title_left_btn')
 verification_code = (By.ID,'com.kuaiduizuoye.scan:id/tv_title')
 # 未注册手机，发送验证码弹窗取消按钮
 cancel_verification = (By.ID,'com.kuaiduizuoye.scan:id/btn_cancel')
+
+
+del_button = (By.ID,'com.kuaiduizuoye.scan:id/siv_clear')
