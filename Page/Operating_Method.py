@@ -24,9 +24,14 @@ class Operating_Method(Base_Method):
     @allure.step('点击下一步按钮')
     def click_nextstep_button(self):
         self.click_element(Page.nextstep_buton)
-    @allure.step('点击登录按钮')
+    @allure.step('点击登录按钮,断言登录是否成功')
     def click_register_button(self):
         self.click_element(Page.register_button)
+        try:
+            assert self.find_element(Page.register_button)
+        except Exception as E:
+            user_name = self.gain_text(Page.user_name)
+            allure.attach('登录成功,我的账号','{0}'.format(user_name))
     @allure.step('获取text值')
     def gain_text(self,element):
         element = self.find_element(element)
