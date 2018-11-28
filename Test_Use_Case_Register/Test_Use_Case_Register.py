@@ -22,8 +22,6 @@ class Test_Login:
         self.Dv.return_page().click_experience_button()
         # 点击跳过按钮
         self.Dv.return_page().click_skip_button()
-        # 点击关闭活动按钮
-        self.Dv.return_page().click_oneyear_button()
         # 点击我的按钮
         self.Dv.return_page().click_my_button()
         # 点击登录或注册按钮
