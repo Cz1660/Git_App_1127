@@ -16,10 +16,9 @@ user_name = (By.ID,'com.kuaiduizuoye.scan:id/tv_user_name')
 setting_button = (By.XPATH,'.//android.widget.TextView[@text="设置"]')
 quit_register_button = (By.XPATH,'.//android.widget.TextView[@text="退出登录"]')
 back_button = (By.ID,'com.kuaiduizuoye.scan:id/title_left_btn')
+back_password = (By.ID,'com.kuaiduizuoye.scan:id/sll_back')
+quit_user = (By.ID,'com.kuaiduizuoye.scan:id/sll_back')
 # 发送验证码
 verification_code = (By.ID,'com.kuaiduizuoye.scan:id/tv_title')
 # 未注册手机，发送验证码弹窗取消按钮
 cancel_verification = (By.ID,'com.kuaiduizuoye.scan:id/btn_cancel')
-
-
-del_button = (By.ID,'com.kuaiduizuoye.scan:id/siv_clear')

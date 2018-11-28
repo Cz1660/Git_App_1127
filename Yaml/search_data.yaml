@@ -1,14 +1,34 @@
 
-test_001:
+'test_001正确账号、密码登录':
  user : '16601035178'
  password : 'Acheng123456'
  tag : '1'
- assert_user : '16601035178'
-test_002:
+ assert_user : '1'
+'test_002正确账号、不正确密码登录':
  user : '16601035178'
  password : 'Acheng1234567'
  assert_user : '1'
-test_003:
+'test_003首空格账号、正确密码登录':
+ user : ' 16601035178'
+ password : 'Acheng123456'
+ tag : '1'
+ assert_user : '1'
+'test_004尾空格账号、正确密码登录':
+ user : '16601035178 '
+ password : 'Acheng123456'
+ tag : '1'
+ assert_user : '1'
+'test_005正确账号、首空格密码':
+ user : '16601035178'
+ password : ' Acheng123456'
+ tag : '1'
+ assert_user : '1'
+'test_006正确账号、尾空格密码':
+ user : '16601035178'
+ password : 'Acheng123456 '
+ tag : '1'
+ assert_user : '1'
+'test_007未注册的账号登录':
  user : '16601035179'
  password : 'Acheng123456'
  assert_title : '1'

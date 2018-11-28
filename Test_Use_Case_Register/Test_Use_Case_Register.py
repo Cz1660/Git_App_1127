@@ -8,7 +8,7 @@ def yaml():
     yaml_data = Read_Data('search_data.yaml').return_data()
     for i in yaml_data.keys():
         list.append((i,yaml_data.get(i).get('user'),yaml_data.get(i).get('password'),yaml_data.get(i).get('tag'),
-                     yaml_data.get(i).get('assert_user'),yaml_data.get(i).get('assert_title'),yaml_data.get(i).get('assert_password')))
+                     yaml_data.get(i).get('assert_user'),yaml_data.get(i).get('assert_title')))
     return list
 
 
@@ -31,9 +31,10 @@ class Test_Login:
     def teardown_class(self):
         self.Dv.driver.quit()
     @pytest.mark.run(order=1)
-    @pytest.mark.parametrize('test_id,user,password,tag,assert_user,assert_title,assert_password',yaml())
-    def test_setting(self,test_id,user,password,tag,assert_user,assert_title,assert_password):
-        time.sleep(3)
+    @pytest.mark.parametrize('test_id,user,password,tag,assert_user,assert_title',yaml())
+    def test_setting(self,test_id,user,password,tag,assert_user,assert_title):
+        allure.attach('用例标题描述','{0}'.format(test_id))
+        time.sleep(1)
         # 输入手机
         self.Dv.return_page().send_keys_account(Page.phone,user)
         # 点击下一步按钮
@@ -44,7 +45,6 @@ class Test_Login:
                 assert not self.Dv.return_page().gain_text(Page.verification_code)
             except Exception as E:
                 allure.attach('获取验证码弹窗','{0}'.format('获取成功，未注册手机,需要注册！'))
-            finally:
                 # 点击取消按钮
                 self.Dv.return_page().click_cancel_verification_button()
         if assert_user:
@@ -84,5 +84,6 @@ class Test_Login:
                 except Exception as E:
                     allure.attach('获取密码输入框结果', '{0}'.format('获取成功，密码不正确，登录失败！'))
                 finally:
+                    time.sleep(8)
                     # 点击回退按钮
-                    self.Dv.return_page().click_back_button()
+                    self.Dv.return_page().click_element(Page.back_password)
