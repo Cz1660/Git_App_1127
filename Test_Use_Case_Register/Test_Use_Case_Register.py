@@ -38,6 +38,7 @@ class Test_Login:
         self.Dv.return_page().send_keys_account(Page.phone,user)
         # 点击下一步按钮
         self.Dv.return_page().click_nextstep_button()
+        time.sleep(2)
         if assert_title:
             try:
                 assert not self.Dv.return_page().gain_text(Page.verification_code)
