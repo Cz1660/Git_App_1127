@@ -56,7 +56,7 @@ class Test_Login:
             # 点击登录按钮
             self.Dv.return_page().click_register_button()
             if tag:
-                time.sleep(2)
+                time.sleep(4)
                 # 上滑屏幕
                 self.Dv.return_page().slide_up()
                 # 点击设置按钮
@@ -85,6 +85,6 @@ class Test_Login:
                 except Exception as E:
                     allure.attach('获取密码输入框结果', '{0}'.format('获取成功，密码不正确，登录失败！'))
                 finally:
-                    time.sleep(12)
+                    time.sleep(15)
                     # 点击回退按钮
                     self.Dv.return_page().click_element(Page.back_password)
